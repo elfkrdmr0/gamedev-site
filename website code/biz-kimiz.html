@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biz Kimiz? | GameDev Kulübü</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+   <nav class="ust-serit">
+        <div class="serit-sol">
+            <a href="index.html">
+                <img src="logo.png" alt="Küçük Logo" class="serit-logo">
+            </a>
+            <span class="kulup-ismi">GameDev </span>
+        </div>
+        
+        <div class="serit-sag">
+            <a href="https://linktr.ee/aibugamedev?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAb21jcARHEehleHRuA2FlbQIxMQBzcnRjBmFwcF9pZA81NjcwNjczNDMzNTI0MjcAAaeGocVFWPJxoqy9OUbUtF4v1J7-8WXxGoDhgKNII4qg-_qXdefiERuDjrkR2A_aem_QmD_Zi5iJjz3eqkhIdP75w" target="_blank" class="uye-butonu-serit">Bize Katıl</a>
+        </div>
+    </nav>
+
+    <main class="container" style="justify-content: flex-start; padding-top: 120px;">
+        <h1 class="slogan" style="margin-bottom: 50px;">Ekibimiz</h1>
+
+        <div class="ekip-bolum">
+            <h2 class="bolum-basligi">Yönetim</h2>
+            <div class="ekip-grid">
+                <div class="ekip-kart lider"><h3>Yiğit Topsan</h3><p class="rol">Leader</p></div>
+                <div class="ekip-kart lider"><h3>Oktay Kaya</h3><p class="rol">Co-Leader</p></div>
+            </div>
+        </div>
+
+        <div class="ekip-bolum">
+            <h2 class="bolum-basligi">Yazılım Ekibi</h2>
+            <div class="ekip-grid">
+                <div class="ekip-kart"><h3>Berat Yalçın</h3><p class="rol">Software Developer</p></div>
+                <div class="ekip-kart" onclick="profiliAc('Elif Tuğçe Karademir', 'Software Developer', 'elif_tugce.jpg', 'Unity ve C# üzerinde çalışıyor. Oyun mekanikleri ve algoritmalar geliştirmekten sorumlu.', 'https://www.linkedin.com/in/elif-tuğçe-karademir')">
+    <h3>Elif Tuğçe Karademir</h3>
+    <p class="rol">Software Developer</p>
+</div>
+                <div class="ekip-kart"><h3>Kadir Samet Onaran</h3><p class="rol">Software Developer</p></div>
+                <div class="ekip-kart"><h3>Türker Yağız Odabaş</h3><p class="rol">Software Developer</p></div>
+                <div class="ekip-kart"><h3>Nisanur Kötek</h3><p class="rol">Software Developer</p></div>
+            </div>
+        </div>
+
+        <div class="ekip-bolum">
+            <h2 class="bolum-basligi">Oyun Grafik Tasarım</h2>
+            <div class="ekip-grid">
+                <div class="ekip-kart"><h3>Mücahid Eren Karaman</h3><p class="rol">Graphic Designer</p></div>
+                <div class="ekip-kart"><h3>Berk Yiğit Çakır</h3><p class="rol">Graphic Designer</p></div>
+                <div class="ekip-kart"><h3>Ali Karadaş</h3><p class="rol">Graphic Designer</p></div>
+                <div class="ekip-kart"><h3>Bahar Güneş</h3><p class="rol">Graphic Designer</p></div>
+            </div>
+        </div>
+
+        <div class="ekip-bolum">
+            <h2 class="bolum-basligi">Planlama ve Organizasyon</h2>
+            <div class="ekip-grid">
+                <div class="ekip-kart"><h3>Azra Ekin Kulein</h3><p class="rol">Planner</p></div>
+                <div class="ekip-kart"><h3>Ömer Faruk Avcı</h3><p class="rol">Planner</p></div>
+                <div class="ekip-kart"><h3>Betül Davutoğlu</h3><p class="rol">Planner</p></div>
+                <div class="ekip-kart"><h3>Ertuğrul Uzunsel</h3><p class="rol">Planner</p></div>
+            </div>
+        </div>
+
+        <div class="ekip-bolum">
+            <h2 class="bolum-basligi">Sosyal Medya Ekibi</h2>
+            <div class="ekip-grid">
+                <div class="ekip-kart"><h3>Hüseyin Kaya</h3><p class="rol">Social Media Manager</p></div>
+            </div>
+        </div>
+
+        <div class="ekip-bolum">
+            <h2 class="bolum-basligi">Sponsorluk Ekibi</h2>
+            <div class="ekip-grid">
+                <div class="ekip-kart"><h3>Arda Karagöz</h3><p class="rol">Sponsorship Manager</p></div>
+            </div>
+        </div>
+
+        <a href="index.html" class="geri-don-btn">Ana Sayfaya Dön</a>
+    </main>
+
+<div id="profil-modal" class="modal-arkaplan">
+        <div class="modal-icerik">
+            <span class="kapat-btn" onclick="profiliKapat()">✖</span>
+            <img id="modal-foto-img" src="varsayilan-profil.jpg" alt="Profil Fotoğrafı" class="modal-foto">
+            <h2 id="modal-isim-yazi" class="modal-isim">İsim Soyisim</h2>
+            <p id="modal-rol-yazi" class="rol" style="font-size: 1rem;">Rol</p>
+            <p id="modal-aciklama-yazi" class="modal-aciklama">Kişi hakkında bilgi buraya gelecek.</p>
+            
+            <a id="modal-linkedin-btn" href="#" target="_blank" class="linkedin-btn">LinkedIn Profili</a>
+        </div>
+    </div>
+
+    <script>
+        function profiliAc(isim, rol, foto, aciklama, linkedinUrl) {
+            document.getElementById('modal-isim-yazi').innerText = isim;
+            document.getElementById('modal-rol-yazi').innerText = rol;
+            document.getElementById('modal-foto-img').src = foto;
+            document.getElementById('modal-aciklama-yazi').innerText = aciklama;
+            
+            // LinkedIn butonu kontrolü
+            var linkedinBtn = document.getElementById('modal-linkedin-btn');
+            if (linkedinUrl && linkedinUrl !== '') {
+                linkedinBtn.href = linkedinUrl;
+                linkedinBtn.style.display = 'inline-block'; // Link varsa butonu göster
+            } else {
+                linkedinBtn.style.display = 'none'; // Link yoksa butonu gizle
+            }
+            
+            document.getElementById('profil-modal').style.display = 'flex';
+        }
+
+        function profiliKapat() {
+            document.getElementById('profil-modal').style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            var modal = document.getElementById('profil-modal');
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
