@@ -47,6 +47,51 @@
             </a>
         </section>
     </main>
+    
+    <div class="maskot-konteyner" onclick="maskotEtkilesim()">
+    <div id="maskot-balon" class="konusma-balonu">Tıkla bakalım!</div>
+    <img id="maskot-img" src="maskot.gif" alt="Maskot" class="maskot-resim">
+</div>
+
+<script>
+    // Maskotun söyleyeceği cümleler
+    const mesajlar = [
+        "Bugün harika bir gün, değil mi?",
+        "Unity mi yoksa unreal Engine mı? Zor soru!",
+        "Bize katılmayı unutma! 🚀",
+        "Bu siteyi Tuğçe ve ekibi kodladı!",
+        "Geliştirme günlüğümüze göz attın mı?",
+        "Geleceğin oyunlarını biz yapıyoruz!",
+        "Hata (bug) bulursan bana söyleme, ben sadece bir maskotum!",
+        "Vay! Beni gıkladın! 😄"
+    ];
+
+    let tiklamaSayisi = 0;
+
+    function maskotEtkilesim() {
+    const img = document.getElementById('maskot-img');
+    const balon = document.getElementById('maskot-balon');
+    
+    // 1. Önce mesajı değiştir
+    const rastgeleMesaj = mesajlar[Math.floor(Math.random() * mesajlar.length)];
+    balon.innerText = rastgeleMesaj;
+    balon.style.opacity = '1';
+
+    // 2. "maskot-aktif" sınıfını ekle (Bu onu sadece bir tık büyütür ve zıplatır)
+    img.classList.add('maskot-aktif');
+
+    // 3. Yarım saniye sonra sınıfı kaldır (Eski haline geri döner)
+    setTimeout(() => {
+        img.classList.remove('maskot-aktif');
+    }, 500);
+
+    // 4. Balonu 3 saniye sonra gizle
+    setTimeout(() => {
+        balon.style.opacity = '0';
+    }, 3000);
+}
+    
+</script>
 
 </body>
 </html>

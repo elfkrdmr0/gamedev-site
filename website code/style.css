@@ -504,3 +504,77 @@ body {
     box-shadow: 0 0 15px rgba(0, 119, 181, 0.5);
     transform: translateY(-2px);
 }
+/* =========================================
+   11. MASKOT RESMİNE SÜZÜLME VE ZIPLAMA EFEKTI
+   ========================================= */
+/* Maskotun ana duruşu */
+.maskot-resim {
+    width: 80px; /* Genişliği burada sabitleyelim */
+    height: auto;
+    transition: transform 0.3s ease-out; /* Hareketin hızı */
+    display: block;
+}
+
+/* Zıplama sınıfı - tıklandığında sadece bu değerler uygulanır */
+.maskot-aktif {
+    transform: scale(1.2) translateY(-20px) !important;
+}
+
+/* =========================================
+   11. MOBİL CİHAZ DÜZENLEMELERİ (Responsive)
+   ========================================= */
+@media (max-width: 600px) {
+    /* Üst şeridin yan boşluklarını daraltalım ki her şey sığsın */
+    .ust-serit {
+        padding: 0 15px;
+        height: 65px; /* Şeridi biraz inceltelim */
+    }
+
+    /* Kulüp ismini telefonda biraz küçültelim */
+    .kulup-ismi {
+        font-size: 0.9rem;
+        letter-spacing: 1px;
+    }
+
+    /* Ve beklenen an: Üye butonunu telefonda küçültüyoruz */
+    .uye-butonu-serit {
+        padding: 6px 15px; /* İç boşluğu azalttık */
+        font-size: 0.7rem;  /* Yazıyı küçülttük */
+        border-radius: 20px;
+    }
+
+    /* Logo boyutunu da biraz dengeleyelim */
+    .serit-logo {
+        height: 45px;
+    }
+    /* Projeler sayfasındaki yan yana dizilimi telefonda dikey yapar */
+.proje-item, .proje-item.ters {
+    flex-direction: column !important; /* Yan yanayı iptal edip alt alta yapar */
+    gap: 20px;
+    padding: 20px;
+    text-align: center; /* Mobilde metinleri ortalamak daha şık durur */
+}
+
+/* Mobilde resim alanının genişliğini ayarlar */
+.proje-resim-alani {
+    min-width: 100% !important; 
+    width: 100%;
+}
+
+/* Mobilde yazıların sola yaslı değil, ortalı durmasını sağlar */
+.proje-metin {
+    text-align: center;
+}
+
+/* Mobilde o yanlardaki kalın çizgileri (border) üste alalım, daha simetrik durur */
+.proje-item {
+    border-left: none;
+    border-top: 4px solid #b87333;
+}
+
+.proje-item.ters {
+    border-right: none;
+    border-top: 4px solid #b87333;
+}
+
+}
