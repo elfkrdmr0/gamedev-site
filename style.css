@@ -508,18 +508,44 @@ body {
    11. MASKOT RESMİNE SÜZÜLME VE ZIPLAMA EFEKTI
    ========================================= */
 /* Maskotun ana duruşu */
+/* Maskotu ekranın alt-orta kısmına sabitler */
+.maskot-konteyner {
+    position: fixed;
+    bottom: 20px;       /* Alttan boşluk */
+    left: 50%;          /* Ekranın tam ortasına getirir */
+    transform: translateX(-50%); /* Kendi genişliğinin yarısı kadar geri çekerek tam merkezler */
+    z-index: 10000;     /* Diğer öğelerin üstünde kalmasını sağlar */
+    display: flex;
+    flex-direction: column; /* Balon üstte, maskot altta olsun diye */
+    align-items: center;    /* Balon ve maskotu dikeyde aynı hizada tutar */
+    justify-content: center;
+    cursor: pointer;
+    width: auto;        /* Genişliğin konuşma balonuna göre değişmesini engeller */
+}
+
+/* Maskot resminin boyutu ve sabit duruşu */
 .maskot-resim {
-    width: 80px; /* Genişliği burada sabitleyelim */
+    width: 100px;       /* Boyutu istediğin gibi ayarla */
     height: auto;
-    transition: transform 0.3s ease-out; /* Hareketin hızı */
-    display: block;
+    display: block;     /* Kaymaları önlemek için block element yapıyoruz */
 }
 
-/* Zıplama sınıfı - tıklandığında sadece bu değerler uygulanır */
-.maskot-aktif {
-    transform: scale(1.2) translateY(-20px) !important;
+/* Konuşma balonu ayarları */
+.konusma-balonu {
+    background-color: white;
+    color: #2c0404;      /* Sitenin koyu bordo temasına uygun bir yazı rengi */
+    padding: 10px 15px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 10px; /* Maskotla arasını açar */
+    opacity: 0;          /* Başlangıçta gizli */
+    transition: opacity 0.3s ease-in-out;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    white-space: nowrap; /* Yazının tek satırda kalmasını sağlar, balonun şeklini korur */
+    pointer-events: none;
 }
-
 /* =========================================
    11. MOBİL CİHAZ DÜZENLEMELERİ (Responsive)
    ========================================= */
