@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GameDev Kulübü | Ana Sayfa</title>
-
-    <link rel="icon" type="image/png" sizes="64x64" href="logo.png">
-
+    <link rel="icon" type="image/png" href="logo.png">
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
 </head>
@@ -19,14 +17,44 @@
             </a>
             <span class="kulup-ismi">GameDev</span>
         </div>
-        
         <div class="serit-sag">
-            <a href="https://linktr.ee/aibugamedev?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAb21jcARHEehleHRuA2FlbQIxMQBzcnRjBmFwcF9pZA81NjcwNjczNDMzNTI0MjcAAaeGocVFWPJxoqy9OUbUtF4v1J7-8WXxGoDhgKNII4qg-_qXdefiERuDjrkR2A_aem_QmD_Zi5iJjz3eqkhIdP75w" target="_blank" class="uye-butonu-serit">Bize Katıl</a>
+            <a href="https://linktr.ee/aibugamedev" target="_blank" class="uye-butonu-serit">Bize Katıl</a>
         </div>
     </nav>
+
     <main class="container">
-        <section class="hero-section" style="text-align: center;">
-            <img src="logo.png" alt="Büyük Logo" class="ana-logo">
+        <section class="hero-section">
+            
+            <!-- DUYURU & PROJE SLIDER BAŞLANGICI -->
+            <div class="duyuru-slider-konteyner">
+                <div class="duyuru-slaytlar">
+                    
+                    <!-- Slayt 1 (Projeler Sayfasına Yönlendirir) -->
+                    <a href="projeler.html" class="slayt aktif">
+                        <img src="proje1-ss.png" alt="İlk Oyunumuz" class="slayt-gorsel">
+                        <div class="slayt-icerik">
+                            <h2>🕹️ Proje: İlk Oyunumuz</h2>
+                            <p>Mekanik ve tasarım testleri devam ediyor. Detaylar için tıkla!</p>
+                        </div>
+                    </a>
+                    
+                    <!-- Slayt 2 (Projeler Sayfasına Yönlendirir) -->
+                    <a href="projeler.html" class="slayt">
+                        <img src="proje2-ss.png" alt="Gelecek Fikirler" class="slayt-gorsel">
+                        <div class="slayt-icerik">
+                            <h2>💡 Proje: Gelecek Fikirler</h2>
+                            <p>Yeni fikirlerimiz ve konsept tasarımlarımız şekilleniyor.</p>
+                        </div>
+                    </a>
+
+                </div>
+
+                <!-- Yönlendirme Butonları -->
+                <button class="slider-btn sol-btn" onclick="slaytDegistir(-1, event)">&#10094;</button>
+                <button class="slider-btn sag-btn" onclick="slaytDegistir(1, event)">&#10095;</button>
+            </div>
+            <!-- SLIDER BİTİŞİ -->
+
             <h1 class="slogan">Sıradaki bölümü beraber tasarlayalım.</h1>
         </section>
 
@@ -36,13 +64,11 @@
                 <p>Geleceği beraber kodlayalım.</p>
                 <span class="ikon">🧭</span>
             </a>
-
             <a href="biz-kimiz.html" class="kart">
                 <h3>Biz Kimiz?</h3>
                 <p>Ekibimizle tanışın.</p>
                 <span class="ikon">👥</span>
             </a>
-
             <a href="projeler.html" class="kart">
                 <h3>Projelerimiz</h3>
                 <p>Geliştirdiğimiz oyunlar.</p>
@@ -52,49 +78,49 @@
     </main>
     
     <div class="maskot-konteyner" onclick="maskotEtkilesim()">
-    <div id="maskot-balon" class="konusma-balonu">Tıkla bakalım!</div>
-    <img id="maskot-img" src="maskot.gif" alt="Maskot" class="maskot-resim">
-</div>
+        <div id="maskot-balon" class="konusma-balonu">Tıkla bakalım!</div>
+        <img id="maskot-img" src="maskot.gif" alt="Maskot" class="maskot-resim">
+    </div>
 
 <script>
-    // Maskotun söyleyeceği cümleler
+    // --- SLIDER SCRIPT ---
+    let gecerliSlaytIndex = 0;
+    const slaytlar = document.querySelectorAll('.slayt');
+    let sliderTimer;
+
+    function slaytGoster(index) {
+        slaytlar.forEach(s => s.classList.remove('aktif'));
+        if (index >= slaytlar.length) gecerliSlaytIndex = 0;
+        else if (index < 0) gecerliSlaytIndex = slaytlar.length - 1;
+        else gecerliSlaytIndex = index;
+        slaytlar[gecerliSlaytIndex].classList.add('aktif');
+    }
+
+    // event.preventDefault() butona basıldığında linke gitmesini engeller
+    function slaytDegistir(yon, event) {
+        if(event) event.preventDefault(); 
+        slaytGoster(gecerliSlaytIndex + yon);
+        resetTimer();
+    }
+
+    function resetTimer() {
+        clearInterval(sliderTimer);
+        sliderTimer = setInterval(() => slaytGoster(gecerliSlaytIndex + 1), 5000);
+    }
+    resetTimer();
+
+    // --- MASKOT SCRIPT ---
     const mesajlar = [
-        "Bugün harika bir gün, değil mi?",
-        "Unity mi yoksa unreal Engine mı? Zor soru!",
-        "Bize katılmayı unutma! 🚀",
-        "Bu siteyi Tuğçe ve ekibi kodladı!",
-        "Geliştirme günlüğümüze göz attın mı?",
-        "Geleceğin oyunlarını biz yapıyoruz!",
-        "Hata (bug) bulursan bana söyleme, ben sadece bir maskotum!",
+        "Bugün harika bir gün!", "Unity mi Unreal mı?", 
+        "Bize katılmayı unutma! 🚀", "Geleceği biz kodluyoruz!",
         "Vay! Beni gıkladın! 😄"
     ];
-
-    let tiklamaSayisi = 0;
-
     function maskotEtkilesim() {
-    const img = document.getElementById('maskot-img');
-    const balon = document.getElementById('maskot-balon');
-    
-    // 1. Önce mesajı değiştir
-    const rastgeleMesaj = mesajlar[Math.floor(Math.random() * mesajlar.length)];
-    balon.innerText = rastgeleMesaj;
-    balon.style.opacity = '1';
-
-    // 2. "maskot-aktif" sınıfını ekle (Bu onu sadece bir tık büyütür ve zıplatır)
-    img.classList.add('maskot-aktif');
-
-    // 3. Yarım saniye sonra sınıfı kaldır (Eski haline geri döner)
-    setTimeout(() => {
-        img.classList.remove('maskot-aktif');
-    }, 500);
-
-    // 4. Balonu 3 saniye sonra gizle
-    setTimeout(() => {
-        balon.style.opacity = '0';
-    }, 3000);
-}
-    
+        const balon = document.getElementById('maskot-balon');
+        balon.innerText = mesajlar[Math.floor(Math.random() * mesajlar.length)];
+        balon.style.opacity = '1';
+        setTimeout(() => balon.style.opacity = '0', 3000);
+    }
 </script>
-
 </body>
 </html>
