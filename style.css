@@ -15,6 +15,7 @@ body {
     flex-direction: column;
     align-items: center;
     min-height: 100vh;
+    padding-top: 75px; /* Üst şeridin (navbar) altında kalmaması için */
 }
 
 .container {
@@ -22,9 +23,14 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 120px 20px;
+    padding: 60px 20px;
     width: 100%;
     box-sizing: border-box;
+}
+
+.hero-section {
+    width: 100%;
+    text-align: center;
 }
 
 .slogan {
@@ -32,73 +38,175 @@ body {
     text-align: center;
     color: #d4af37;
     text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+    margin-top: 30px;
     margin-bottom: 40px;
 }
 
 /* =========================================
-   2. LOGOLAR VE ÜST BUTONLAR
+   2. ÜST ŞERİT (NAVBAR) AYARLARI
    ========================================= */
-/* Sol Üst Köşe Logo Butonu */
-.kose-buton {
+.ust-serit {
     position: fixed;
-    top: 25px;
-    left: 25px;
-    width: 95px; 
-    height: 95px;
-    border: 3px solid #b87333;
-    border-radius: 50%;
-    padding: 10px;
-    background: rgba(0, 0, 0, 0.9);
-    z-index: 1000;
-    box-shadow: 0 0 20px rgba(184, 115, 51, 0.5);
-    transition: 0.3s ease;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 75px;
+    background: rgba(10, 10, 10, 0.95);
+    border-bottom: 2px solid #b87333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+    box-sizing: border-box;
+    z-index: 2000;
+    box-shadow: 0 4px 15px rgba(184, 115, 51, 0.3);
+    backdrop-filter: blur(5px);
+}
+
+.serit-sol {
     display: flex;
     align-items: center;
-    justify-content: center;
+    gap: 20px;
 }
 
-.kose-buton:hover {
+.serit-logo {
+    height: 55px;
+    width: auto;
+    border-radius: 50%;
+    border: 2px solid #d4af37;
+    transition: 0.3s;
+}
+
+.serit-logo:hover {
     transform: scale(1.1) rotate(5deg);
-    border-color: #d4af37;
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.6);
 }
 
-/* Merkezdeki Ana Logo */
-.ana-logo {
-    width: 250px; 
-    height: auto;
-    filter: drop-shadow(0 0 20px rgba(184, 115, 51, 0.4));
-    margin-bottom: 20px;
-    transition: transform 0.4s ease-in-out;
+.kulup-ismi {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #d4af37;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
-.ana-logo:hover {
-    transform: scale(1.03); 
-}
-
-/* Sağ Üst Üye Katılım Butonu */
-.uye-butonu {
-    position: fixed;
-    top: 30px;
-    right: 30px;
+.uye-butonu-serit {
     background: linear-gradient(45deg, #b87333, #d4af37);
     color: black;
-    padding: 12px 25px;
+    padding: 10px 25px;
     border-radius: 30px;
     text-decoration: none;
     font-weight: bold;
     font-size: 0.9rem;
     box-shadow: 0 0 15px rgba(184, 115, 51, 0.4);
-    z-index: 1000;
     transition: 0.3s;
+    text-transform: uppercase;
 }
 
-.uye-butonu:hover {
+.uye-butonu-serit:hover {
     transform: scale(1.05);
     box-shadow: 0 0 25px rgba(212, 175, 55, 0.6);
 }
 
 /* =========================================
-   3. ANA SAYFA KARTLARI
+   3. DUYURU & PROJE SLIDER AYARLARI (YENİ)
+   ========================================= */
+.duyuru-slider-konteyner {
+    position: relative;
+    max-width: 650px; 
+    width: 95%;
+    margin: 0 auto;
+    background: rgba(15, 15, 15, 0.85);
+    border: 2px solid #b87333;
+    border-radius: 20px;
+    padding: 30px 0; 
+    box-shadow: 0 0 30px rgba(184, 115, 51, 0.3);
+    overflow: hidden;
+}
+
+.duyuru-slaytlar {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.slayt {
+    display: none;
+    flex-direction: column; 
+    align-items: center;
+    text-decoration: none; 
+    width: 100%;
+    animation: fadeSlayt 0.8s ease-in-out;
+    cursor: pointer;
+}
+
+.slayt.aktif {
+    display: flex;
+}
+
+.slayt:hover .slayt-gorsel {
+    transform: scale(1.05);
+    border-color: #d4af37;
+}
+
+.slayt-gorsel {
+    width: 80%; 
+    max-width: 350px; 
+    height: auto;
+    border-radius: 15px;
+    border: 2px solid #b87333;
+    margin-bottom: 20px; 
+    transition: 0.3s;
+}
+
+.slayt-icerik {
+    text-align: center;
+    padding: 0 50px;
+}
+
+.slayt-icerik h2 {
+    color: #d4af37;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.slayt-icerik p {
+    color: #ccc;
+    font-size: 1rem;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.7);
+    color: #d4af37;
+    border: 2px solid #b87333;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    font-size: 18px;
+    cursor: pointer;
+    z-index: 100;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sol-btn { left: 15px; }
+.sag-btn { right: 15px; }
+.slider-btn:hover { background: #b87333; color: black; }
+
+@keyframes fadeSlayt {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* =========================================
+   4. ANA SAYFA KARTLARI
    ========================================= */
 .kart-alani {
     display: flex;
@@ -138,7 +246,7 @@ body {
 }
 
 /* =========================================
-   4. EKİP SAYFASI (BİZ KİMİZ)
+   5. EKİP SAYFASI (BİZ KİMİZ)
    ========================================= */
 .ekip-bolum { 
     width: 100%; 
@@ -159,30 +267,37 @@ body {
     display: flex; 
     gap: 15px; 
     flex-wrap: wrap;
-    justify-content: center; /* Kartları ortalamak için eklendi */
+    justify-content: center; 
 }
-.ekip-kart { 
-    background: rgba(20, 20, 20, 0.8); 
-    border: 1px solid #b87333; 
-    padding: 15px 20px; 
-    border-radius: 10px; 
-    min-width: 200px;
+
+.profil-kart {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid #b87333;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    cursor: pointer;
     transition: 0.3s;
+    width: 200px;
 }
 
-.ekip-kart:hover { 
-    border-color: #d4af37; 
+.profil-kart:hover {
+    transform: translateY(-10px);
+    border-color: #d4af37;
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
     background: rgba(30, 30, 30, 0.9);
-    transform: translateY(-5px); 
-    box-shadow: 0 0 20px rgba(184, 115, 51, 0.2);
 }
 
-.ekip-kart.lider {
-    border: 1px solid #d4af37;
-    background: rgba(184, 115, 51, 0.1);
+.profil-kart img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #b87333;
+    margin-bottom: 10px;
 }
 
-.ekip-kart h3 { 
+.profil-kart h3 { 
     color: #fff; 
     font-size: 1rem; 
     margin-bottom: 5px; 
@@ -196,7 +311,105 @@ body {
 }
 
 /* =========================================
-   5. PROJELER SAYFASI
+   6. PROFİL MODAL (AÇILIR PENCERE)
+   ========================================= */
+.modal {
+    display: none; 
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.85);
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(8px);
+}
+
+.modal-icerik {
+    background: rgba(15, 15, 15, 0.95);
+    padding: 40px;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 450px;
+    text-align: center;
+    border: 2px solid #b87333;
+    position: relative;
+    box-shadow: 0 0 40px rgba(184, 115, 51, 0.4);
+    animation: modalAcilis 0.4s ease-out forwards;
+}
+
+@keyframes modalAcilis {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.kapat-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    color: #d4af37;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.kapat-btn:hover {
+    color: white;
+    transform: scale(1.2);
+}
+
+.modal-foto {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 3px solid #d4af37;
+    object-fit: cover;
+    margin-bottom: 20px;
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+}
+
+.modal-isim {
+    color: white;
+    margin-bottom: 5px;
+    font-size: 1.5rem;
+}
+
+.modal-aciklama {
+    color: #ccc;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-top: 15px;
+    border-top: 1px solid rgba(184, 115, 51, 0.3);
+    padding-top: 15px;
+}
+
+.linkedin-btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 25px;
+    background: rgba(0, 119, 181, 0.1); 
+    border: 1px solid #0077b5;
+    color: #0077b5;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.9rem;
+    transition: 0.3s;
+    letter-spacing: 1px;
+}
+
+.linkedin-btn:hover {
+    background: #0077b5;
+    color: white;
+    box-shadow: 0 0 15px rgba(0, 119, 181, 0.5);
+    transform: translateY(-2px);
+}
+
+/* =========================================
+   7. PROJELER SAYFASI
    ========================================= */
 .proje-listesi {
     display: flex;
@@ -281,7 +494,7 @@ body {
 }
 
 /* =========================================
-   6. VİZYON SAYFASI (METİN KUTUSU)
+   8. VİZYON SAYFASI
    ========================================= */
 .content-box {
     background: rgba(20, 20, 20, 0.9);
@@ -301,7 +514,7 @@ body {
 }
 
 /* =========================================
-   7. ALT SAYFALARDAKİ GERİ DÖN BUTONU
+   9. GERİ DÖN BUTONU
    ========================================= */
 .geri-don-btn {
     display: inline-block;
@@ -327,349 +540,102 @@ body {
 }
 
 /* =========================================
-   8. ÜST ŞERİT (NAVBAR) AYARLARI
+   10. MASKOT
    ========================================= */
-.ust-serit {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 75px;
-    background: rgba(10, 10, 10, 0.95);
-    border-bottom: 2px solid #b87333;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 40px;
-    box-sizing: border-box;
-    z-index: 2000;
-    box-shadow: 0 4px 15px rgba(184, 115, 51, 0.3);
-    backdrop-filter: blur(5px);
-}
-
-.serit-sol {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
-
-.serit-logo {
-    height: 55px;
-    width: auto;
-    border-radius: 50%;
-    border: 2px solid #d4af37;
-    transition: 0.3s;
-}
-
-.serit-logo:hover {
-    transform: scale(1.1) rotate(5deg);
-    box-shadow: 0 0 15px rgba(212, 175, 55, 0.6);
-}
-
-.kulup-ismi {
-    font-size: 1.3rem;
-    font-weight: bold;
-    color: #d4af37;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-}
-
-.uye-butonu-serit {
-    background: linear-gradient(45deg, #b87333, #d4af37);
-    color: black;
-    padding: 10px 25px;
-    border-radius: 30px;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 0.9rem;
-    box-shadow: 0 0 15px rgba(184, 115, 51, 0.4);
-    transition: 0.3s;
-    text-transform: uppercase;
-}
-
-.uye-butonu-serit:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 25px rgba(212, 175, 55, 0.6);
-}
-
-/* Sayfa içeriğinin şeridin altında kalmaması için body'e üstten boşluk veriyoruz */
-body {
-    padding-top: 75px; 
-}
-/* =========================================
-   9. PROFİL MODAL (AÇILIR PENCERE) AYARLARI
-   ========================================= */
-/* Kartların üzerine gelince tıklanabilir olduğunu göstermek için */
-.ekip-kart {
-    cursor: pointer;
-}
-
-/* Modal Arkaplanı (Ekranı karartan kısım) */
-.modal-arkaplan {
-    display: none; /* Başlangıçta gizli */
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.85);
-    z-index: 3000;
-    justify-content: center;
-    align-items: center;
-    backdrop-filter: blur(8px);
-}
-
-/* Açılan Profil Kartının Kendisi */
-.modal-icerik {
-    background: rgba(15, 15, 15, 0.95);
-    border: 2px solid #b87333;
-    border-radius: 20px;
-    padding: 40px;
-    width: 90%;
-    max-width: 450px;
-    text-align: center;
-    position: relative;
-    box-shadow: 0 0 40px rgba(184, 115, 51, 0.4);
-    animation: modalAcilis 0.4s ease-out forwards;
-}
-
-@keyframes modalAcilis {
-    from { transform: scale(0.8); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
-}
-
-/* Kapatma Butonu (X) */
-.kapat-btn {
-    position: absolute;
-    top: 15px;
-    right: 20px;
-    color: #d4af37;
-    font-size: 1.5rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.kapat-btn:hover {
-    color: white;
-    transform: scale(1.2);
-}
-
-/* Profil Fotoğrafı */
-.modal-foto {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    border: 3px solid #d4af37;
-    object-fit: cover;
-    margin-bottom: 20px;
-    box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
-}
-
-.modal-isim {
-    color: white;
-    margin-bottom: 5px;
-    font-size: 1.5rem;
-}
-
-.modal-aciklama {
-    color: #ccc;
-    font-size: 0.95rem;
-    line-height: 1.6;
-    margin-top: 15px;
-    border-top: 1px solid rgba(184, 115, 51, 0.3);
-    padding-top: 15px;
-}
-/* =========================================
-   10. MODAL İÇİ LİNKEDİN BUTONU
-   ========================================= */
-.linkedin-btn {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 10px 25px;
-    background: rgba(0, 119, 181, 0.1); /* LinkedIn mavisi hafif transparan */
-    border: 1px solid #0077b5;
-    color: #0077b5;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 0.9rem;
-    transition: 0.3s;
-    letter-spacing: 1px;
-}
-
-.linkedin-btn:hover {
-    background: #0077b5;
-    color: white;
-    box-shadow: 0 0 15px rgba(0, 119, 181, 0.5);
-    transform: translateY(-2px);
-}
-/* =========================================
-   11. MASKOT RESMİNE SÜZÜLME VE ZIPLAMA EFEKTI
-   ========================================= */
-/* Maskotun ana duruşu */
-/* Maskotu ekranın alt-orta kısmına sabitler */
 .maskot-konteyner {
     position: fixed;
-    bottom: 20px;       /* Alttan boşluk */
-    left: 50%;          /* Ekranın tam ortasına getirir */
-    transform: translateX(-50%); /* Kendi genişliğinin yarısı kadar geri çekerek tam merkezler */
-    z-index: 10000;     /* Diğer öğelerin üstünde kalmasını sağlar */
+    bottom: 20px;       
+    left: 50%;          
+    transform: translateX(-50%); 
+    z-index: 10000;     
     display: flex;
-    flex-direction: column; /* Balon üstte, maskot altta olsun diye */
-    align-items: center;    /* Balon ve maskotu dikeyde aynı hizada tutar */
+    flex-direction: column; 
+    align-items: center;    
     justify-content: center;
     cursor: pointer;
-    width: auto;        /* Genişliğin konuşma balonuna göre değişmesini engeller */
+    width: auto;        
 }
 
-/* Maskot resminin boyutu ve sabit duruşu */
 .maskot-resim {
-    width: 100px;       /* Boyutu istediğin gibi ayarla */
+    width: 100px;       
     height: auto;
-    display: block;     /* Kaymaları önlemek için block element yapıyoruz */
+    display: block;     
 }
 
-/* Konuşma balonu ayarları */
 .konusma-balonu {
     background-color: white;
-    color: #2c0404;      /* Sitenin koyu bordo temasına uygun bir yazı rengi */
+    color: #2c0404;      
     padding: 10px 15px;
     border-radius: 20px;
     font-size: 14px;
     font-weight: bold;
-    margin-bottom: 10px; /* Maskotla arasını açar */
-    opacity: 0;          /* Başlangıçta gizli */
+    margin-bottom: 10px; 
+    opacity: 0;          
     transition: opacity 0.3s ease-in-out;
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
     text-align: center;
-    white-space: nowrap; /* Yazının tek satırda kalmasını sağlar, balonun şeklini korur */
+    white-space: nowrap; 
     pointer-events: none;
 }
+
+.maskot-aktif { 
+    transform: scale(1.2) translateY(-10px); 
+    transition: 0.2s; 
+}
+
 /* =========================================
    11. MOBİL CİHAZ DÜZENLEMELERİ (Responsive)
    ========================================= */
 @media (max-width: 600px) {
-    /* Üst şeridin yan boşluklarını daraltalım ki her şey sığsın */
+    /* Navbar Düzeni */
     .ust-serit {
         padding: 0 15px;
-        height: 65px; /* Şeridi biraz inceltelim */
+        height: 65px; 
     }
-
-    /* Kulüp ismini telefonda biraz küçültelim */
     .kulup-ismi {
         font-size: 0.9rem;
         letter-spacing: 1px;
     }
-
-    /* Ve beklenen an: Üye butonunu telefonda küçültüyoruz */
     .uye-butonu-serit {
-        padding: 6px 15px; /* İç boşluğu azalttık */
-        font-size: 0.7rem;  /* Yazıyı küçülttük */
+        padding: 6px 15px; 
+        font-size: 0.7rem;  
         border-radius: 20px;
     }
-
-    /* Logo boyutunu da biraz dengeleyelim */
     .serit-logo {
         height: 45px;
     }
-    /* Projeler sayfasındaki yan yana dizilimi telefonda dikey yapar */
-.proje-item, .proje-item.ters {
-    flex-direction: column !important; /* Yan yanayı iptal edip alt alta yapar */
-    gap: 20px;
-    padding: 20px;
-    text-align: center; /* Mobilde metinleri ortalamak daha şık durur */
-}
-
-/* Mobilde resim alanının genişliğini ayarlar */
-.proje-resim-alani {
-    min-width: 100% !important; 
-    width: 100%;
-}
-
-/* Mobilde yazıların sola yaslı değil, ortalı durmasını sağlar */
-.proje-metin {
-    text-align: center;
-}
-
-/* Mobilde o yanlardaki kalın çizgileri (border) üste alalım, daha simetrik durur */
-.proje-item {
-    border-left: none;
-    border-top: 4px solid #b87333;
-}
-
-.proje-item.ters {
-    border-right: none;
-    border-top: 4px solid #b87333;
-}
-
-}
-
-/* Ekip Kartları Düzeni */
-.ekip-konteyner {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 30px;
-    padding: 40px;
-}
-
-.profil-kart {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid #d4af37;
-    padding: 20px;
-    border-radius: 15px;
-    text-align: center;
-    cursor: pointer;
-    transition: 0.3s;
-    width: 200px;
-}
-
-.profil-kart:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
-}
-
-.profil-kart img {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid #d4af37;
-}
-
-/* Modal (Pencere) Tasarımı */
-.modal {
-    display: none; /* Başlangıçta gizli */
-    position: fixed;
-    z-index: 9999;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.8);
-    align-items: center;
-    justify-content: center;
-}
-
-.modal-icerik {
-    background: #1a1a1a;
-    padding: 30px;
-    border-radius: 20px;
-    width: 90%;
-    max-width: 450px;
-    text-align: center;
-    border: 2px solid #d4af37;
-    position: relative;
-}
-
-.linkedin-btn {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 10px 20px;
-    background: #0077b5;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    font-weight: bold;
+    
+    /* Slider Düzeni */
+    .slayt-gorsel { 
+        width: 90%; 
+    }
+    .slayt-icerik { 
+        padding: 0 20px; 
+    }
+    .slayt-icerik h2 { 
+        font-size: 1.2rem; 
+    }
+    
+    /* Projeler Düzeni */
+    .proje-item, .proje-item.ters {
+        flex-direction: column !important; 
+        gap: 20px;
+        padding: 20px;
+        text-align: center; 
+    }
+    .proje-resim-alani {
+        min-width: 100% !important; 
+        width: 100%;
+    }
+    .proje-metin {
+        text-align: center;
+    }
+    .proje-item {
+        border-left: none;
+        border-top: 4px solid #b87333;
+    }
+    .proje-item.ters {
+        border-right: none;
+        border-top: 4px solid #b87333;
+    }
 }
