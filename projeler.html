@@ -175,31 +175,16 @@
                 <button class="oyna-btn" style="background: #333; color: #666; cursor: not-allowed;">YAKINDA</button>
             </div>
 
-            <div class="oyun-kart" style="opacity: 0.6; cursor: not-allowed;" onclick="event.stopPropagation(); alert('Bu oyun henüz geliştirme aşamasında!');">
+            <div class="oyun-kart" onclick="oyunuAc('index-nisa-oyun.html')">
                 <div class="oyun-ikon-alani">
-                
-
-                <div class="oyun-kart" onclick="oyunuAc('index-nisa-oyun.html')">
+                    <span style="font-size: 3rem;">👻</span>
+                </div>
                 <h3>flappy bird</h3>
-                <p>Yeni nesil flappy ghost tarzı bir minigame.şimdi sizlerle!</p>
+                <p>Yeni nesil flappy ghost tarzı bir minigame. Şimdi sizlerle!</p>
                 <button class="oyna-btn">ŞİMDİ OYNA</button>
             </div>
 
         </div>
-
-        <!-- <div class="proje-listesi">
-            <div class="proje-item">
-                <div class="proje-resim-alani">
-                    <img src="proje1-ss.png" alt="Oyun Ekran Görüntüsü 1" class="proje-ss">
-                    <div class="yapim-asamasi">YAPIM AŞAMASINDA</div>
-                </div>
-                <div class="proje-metin">
-                    <h3>Proje: İlk Oyunumuz</h3>
-                    <p>Henüz geliştirme aşamasında olan ilk oyunumuz için mekanik ve tasarım testleri devam ediyor. Ekibimiz harika fikirler üzerinde çalışıyor!</p>
-                    <p>Detaylar ve yeni ekran görüntüleri çok yakında burada olacak.</p>
-                </div>
-            </div>
-        </div> -->
 
         <a href="index.html" class="geri-don-btn">Ana Sayfaya Dön</a>
     </main>
@@ -214,16 +199,16 @@
             const modal = document.getElementById('oyunModal');
             const iframe = document.getElementById('modalIframe');
             
-            iframe.src = oyunUrl; // Seçilen oyunu yükle
-            modal.style.display = 'flex'; // Pencereyi görünür yap
+            iframe.src = oyunUrl; 
+            modal.style.display = 'flex'; 
         }
 
         function oyunuKapat() {
             const modal = document.getElementById('oyunModal');
             const iframe = document.getElementById('modalIframe');
             
-            iframe.src = ""; // Oyunu tamamen kapat (RAM temizliği için kritik!)
-            modal.style.display = 'none'; // Pencereyi gizle
+            iframe.src = ""; 
+            modal.style.display = 'none'; 
         }
     </script>
 
