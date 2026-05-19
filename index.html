@@ -1,126 +1,133 @@
 <!DOCTYPE html>
-<html lang="tr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GameDev Kulübü | Ana Sayfa</title>
-    <link rel="icon" type="image/png" href="logo.png">
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
-</head>
-<body>
-
-    <nav class="ust-serit">
-        <div class="serit-sol">
-            <a href="index.html">
-                <img src="logo.png" alt="Küçük Logo" class="serit-logo">
-            </a>
-            <span class="kulup-ismi">GameDev</span>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Unity Web Player | webcode</title>
+    <link rel="shortcut icon" href="TemplateData/favicon.ico">
+    <link rel="stylesheet" href="TemplateData/style.css">
+  </head>
+  <body>
+    <div id="unity-container" class="unity-desktop">
+      <canvas id="unity-canvas" width=540 height=960 tabindex="-1"></canvas>
+      <div id="unity-loading-bar">
+        <div id="unity-logo"></div>
+        <div id="unity-progress-bar-empty">
+          <div id="unity-progress-bar-full"></div>
         </div>
-        <div class="serit-sag">
-            <a href="https://linktr.ee/aibugamedev" target="_blank" class="uye-butonu-serit">Bize Katıl</a>
-        </div>
-    </nav>
-
-    <main class="container">
-        <section class="hero-section">
-            
-            <!-- DUYURU & PROJE SLIDER BAŞLANGICI -->
-            <div class="duyuru-slider-konteyner">
-                <div class="duyuru-slaytlar">
-                    
-                    <!-- Slayt 1 (Projeler Sayfasına Yönlendirir) -->
-                    <a href="projeler.html" class="slayt aktif">
-                        <img src="logo.png" alt="mini gamelerimiz" class="slayt-gorsel">
-                        <div class="slayt-icerik">
-                            <h2>🕹️ Proje: Mini Gamelerimiz</h2>
-                            <p>Mekanik ve tasarım testleri devam ediyor. Detaylar için tıkla!</p>
-                        </div>
-                    </a>
-                    
-                    <!-- Slayt 2 (Projeler Sayfasına Yönlendirir)
-                    <a href="projeler.html" class="slayt">
-                        <img src="proje2-ss.png" alt="Gelecek Fikirler" class="slayt-gorsel">
-                        <div class="slayt-icerik">
-                            <h2>💡 Proje: Gelecek Fikirler</h2>
-                            <p>Yeni fikirlerimiz ve konsept tasarımlarımız şekilleniyor.</p>
-                        </div>
-                    </a> -->
-
-                </div>
-
-                <!-- Yönlendirme Butonları -->
-                <button class="slider-btn sol-btn" onclick="slaytDegistir(-1, event)">&#10094;</button>
-                <button class="slider-btn sag-btn" onclick="slaytDegistir(1, event)">&#10095;</button>
-            </div>
-            <!-- SLIDER BİTİŞİ -->
-
-            <h1 class="slogan">Sıradaki bölümü beraber tasarlayalım.</h1>
-        </section>
-
-        <section class="kart-alani">
-            <a href="vizyon.html" class="kart">
-                <h3>Vizyonumuz</h3>
-                <p>Geleceği beraber kodlayalım.</p>
-                <span class="ikon">🧭</span>
-            </a>
-            <a href="biz-kimiz.html" class="kart">
-                <h3>Biz Kimiz?</h3>
-                <p>Ekibimizle tanışın.</p>
-                <span class="ikon">👥</span>
-            </a>
-            <a href="projeler.html" class="kart">
-                <h3>Projelerimiz</h3>
-                <p>Geliştirdiğimiz oyunlar.</p>
-                <span class="ikon">🎮</span>
-            </a>
-        </section>
-    </main>
-    
-    <div class="maskot-konteyner" onclick="maskotEtkilesim()">
-        <div id="maskot-balon" class="konusma-balonu">Tıkla bakalım!</div>
-        <img id="maskot-img" src="maskot.gif" alt="Maskot" class="maskot-resim">
+      </div>
+      <div id="unity-warning"> </div>
+      <div id="unity-footer">
+        <div id="unity-logo-title-footer"></div>
+        <div id="unity-fullscreen-button"></div>
+        <div id="unity-build-title">webcode</div>
+      </div>
     </div>
+    <script>
+      var canvas = document.querySelector("#unity-canvas");
 
-<script>
-    // --- SLIDER SCRIPT ---
-    let gecerliSlaytIndex = 0;
-    const slaytlar = document.querySelectorAll('.slayt');
-    let sliderTimer;
+      // Shows a temporary message banner/ribbon for a few seconds, or
+      // a permanent error message on top of the canvas if type=='error'.
+      // If type=='warning', a yellow highlight color is used.
+      // Modify or remove this function to customize the visually presented
+      // way that non-critical warnings and error messages are presented to the
+      // user.
+      function unityShowBanner(msg, type) {
+        var warningBanner = document.querySelector("#unity-warning");
+        function updateBannerVisibility() {
+          warningBanner.style.display = warningBanner.children.length ? 'block' : 'none';
+        }
+        var div = document.createElement('div');
+        div.innerHTML = msg;
+        warningBanner.appendChild(div);
+        if (type == 'error') div.style = 'background: red; padding: 10px;';
+        else {
+          if (type == 'warning') div.style = 'background: yellow; padding: 10px;';
+          setTimeout(function() {
+            warningBanner.removeChild(div);
+            updateBannerVisibility();
+          }, 5000);
+        }
+        updateBannerVisibility();
+      }
 
-    function slaytGoster(index) {
-        slaytlar.forEach(s => s.classList.remove('aktif'));
-        if (index >= slaytlar.length) gecerliSlaytIndex = 0;
-        else if (index < 0) gecerliSlaytIndex = slaytlar.length - 1;
-        else gecerliSlaytIndex = index;
-        slaytlar[gecerliSlaytIndex].classList.add('aktif');
-    }
+      var buildUrl = "Build";
+      var loaderUrl = buildUrl + "/Yeni klasör.loader.js";
+      var config = {
+        arguments: [],
+        dataUrl: buildUrl + "/Yeni klasör.data",
+        frameworkUrl: buildUrl + "/Yeni klasör.framework.js",
+        codeUrl: buildUrl + "/Yeni klasör.wasm",
+        streamingAssetsUrl: "StreamingAssets",
+        companyName: "DefaultCompany",
+        productName: "webcode",
+        productVersion: "1.0",
+        showBanner: unityShowBanner,
+        // errorHandler: function(err, url, line) {
+        //    alert("error " + err + " occurred at line " + line);
+        //    // Return 'true' if you handled this error and don't want Unity
+        //    // to process it further, 'false' otherwise.
+        //    return true;
+        // },
+      };
 
-    // event.preventDefault() butona basıldığında linke gitmesini engeller
-    function slaytDegistir(yon, event) {
-        if(event) event.preventDefault(); 
-        slaytGoster(gecerliSlaytIndex + yon);
-        resetTimer();
-    }
+      // By default, Unity keeps WebGL canvas render target size matched with
+      // the DOM size of the canvas element (scaled by window.devicePixelRatio)
+      // Set this to false if you want to decouple this synchronization from
+      // happening inside the engine, and you would instead like to size up
+      // the canvas DOM size and WebGL render target sizes yourself.
+      // config.matchWebGLToCanvasSize = false;
 
-    function resetTimer() {
-        clearInterval(sliderTimer);
-        sliderTimer = setInterval(() => slaytGoster(gecerliSlaytIndex + 1), 5000);
-    }
-    resetTimer();
+      // If you would like all file writes inside Unity Application.persistentDataPath
+      // directory to automatically persist so that the contents are remembered when
+      // the user revisits the site the next time, uncomment the following line:
+      // config.autoSyncPersistentDataPath = true;
+      // This autosyncing is currently not the default behavior to avoid regressing
+      // existing user projects that might rely on the earlier manual
+      // JS_FileSystem_Sync() behavior, but in future Unity version, this will be
+      // expected to change.
 
-    // --- MASKOT SCRIPT ---
-    const mesajlar = [
-        "Bugün harika bir gün!", "Unity mi Unreal mı?", 
-        "Bize katılmayı unutma! 🚀", "Geleceği biz kodluyoruz!",
-        "Vay! Beni gıkladın! 😄"
-    ];
-    function maskotEtkilesim() {
-        const balon = document.getElementById('maskot-balon');
-        balon.innerText = mesajlar[Math.floor(Math.random() * mesajlar.length)];
-        balon.style.opacity = '1';
-        setTimeout(() => balon.style.opacity = '0', 3000);
-    }
-</script>
-</body>
+      if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+        // Mobile device style: fill the whole browser client area with the game canvas:
+
+        var meta = document.createElement('meta');
+        meta.name = 'viewport';
+        meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
+        document.getElementsByTagName('head')[0].appendChild(meta);
+        document.querySelector("#unity-container").className = "unity-mobile";
+        canvas.className = "unity-mobile";
+
+        // To lower canvas resolution on mobile devices to gain some
+        // performance, uncomment the following line:
+        // config.devicePixelRatio = 1;
+
+
+      } else {
+        // Desktop style: Render the game canvas in a window that can be maximized to fullscreen:
+        canvas.style.width = "540px";
+        canvas.style.height = "960px";
+      }
+
+      document.querySelector("#unity-loading-bar").style.display = "block";
+
+      var script = document.createElement("script");
+      script.src = loaderUrl;
+      script.onload = () => {
+        createUnityInstance(canvas, config, (progress) => {
+          document.querySelector("#unity-progress-bar-full").style.width = 100 * progress + "%";
+              }).then((unityInstance) => {
+                document.querySelector("#unity-loading-bar").style.display = "none";
+                document.querySelector("#unity-fullscreen-button").onclick = () => {
+                  unityInstance.SetFullscreen(1);
+                };
+
+              }).catch((message) => {
+                alert(message);
+              });
+            };
+
+      document.body.appendChild(script);
+
+    </script>
+  </body>
 </html>
