@@ -9,6 +9,133 @@
 
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        .oyun-galerisi {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+            width: 100%;
+            max-width: 1200px;
+            margin-bottom: 60px;
+        }
+
+        .oyun-kart {
+            background-color: #1a1a24;
+            border: 1px solid rgba(0, 255, 204, 0.2);
+            border-radius: 15px;
+            width: 320px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .oyun-kart:hover {
+            transform: translateY(-10px);
+            border-color: #00ffcc;
+            box-shadow: 0 0 25px rgba(0, 255, 204, 0.4);
+        }
+
+        .oyun-ikon-alani {
+            height: 150px;
+            background: linear-gradient(135deg, #0d0d13 0%, #252538 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .oyun-ikon-alani img {
+            max-height: 100px;
+            max-width: 100px;
+            object-fit: contain;
+        }
+
+        .oyun-kart h3 {
+            color: #00ffcc;
+            margin: 10px 0;
+            font-family: 'Orbitron', sans-serif;
+            text-shadow: 0 0 5px rgba(0, 255, 204, 0.3);
+        }
+
+        .oyun-kart p {
+            font-size: 0.9rem;
+            color: #cccccc;
+            min-height: 60px;
+            line-height: 1.4;
+        }
+
+        .oyna-btn {
+            background: linear-gradient(90deg, #00ffcc, #00b3ff);
+            border: none;
+            color: #0a0a0a;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-family: 'Orbitron', sans-serif;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 15px;
+            transition: 0.2s;
+        }
+
+        .oyun-kart:hover .oyna-btn {
+            box-shadow: 0 0 15px #00ffcc;
+        }
+
+        /* 🕶️ TAM EKRAN OYUN MODALI (Pencere açılma efekti) */
+        .oyun-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(10, 10, 10, 0.95);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .modal-kapat-btn {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            background: none;
+            border: 2px solid #ff0055;
+            color: #ff0055;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-family: 'Orbitron', sans-serif;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        .modal-kapat-btn:hover {
+            background-color: #ff0055;
+            color: white;
+            box-shadow: 0 0 15px #ff0055;
+        }
+
+        .modal-oyun-penceresi {
+            width: 540px;
+            height: 960px;
+            max-width: 95vw;
+            max-height: 85vh;
+            border: 2px solid #00ffcc;
+            border-radius: 10px;
+            box-shadow: 0 0 30px rgba(0, 255, 204, 0.3);
+        }
+    </style>
 </head>
 <body>
 
@@ -21,14 +148,45 @@
         </div>
         
         <div class="serit-sag">
-            <a href="https://linktr.ee/aibugamedev?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAb21jcARHEehleHRuA2FlbQIxMQBzcnRjBmFwcF9pZA81NjcwNjczNDMzNTI0MjcAAaeGocVFWPJxoqy9OUbUtF4v1J7-8WXxGoDhgKNII4qg-_qXdefiERuDjrkR2A_aem_QmD_Zi5iJjz3eqkhIdP75w" target="_blank" class="uye-butonu-serit">Bize Katıl</a>
+            <a href="https://linktr.ee/aibugamedev" target="_blank" class="uye-butonu-serit">Bize Katıl</a>
         </div>
     </nav>
+
     <main class="container" style="justify-content: flex-start; padding-top: 120px;">
         <h1 class="slogan" style="margin-bottom: 60px;">Geliştirme Günlüğü</h1>
 
-        <div class="proje-listesi">
+        <div class="oyun-galerisi">
             
+            <div class="oyun-kart" onclick="oyunuAc('festivaloyunu/index.html')">
+                <div class="oyun-ikon-alani">
+                    <img src="logo.png" alt="Festival Oyunu">
+                </div>
+                <h3>merge tarzı oyun</h3>
+                <p>Festival stantlarına özel geliştirdiğimiz minigame, harika donanım evrimli birleştirme oyunu! En yüksek skoru kim yapacak?</p>
+                <button class="oyna-btn">ŞİMDİ OYNA</button>
+            </div>
+
+            <div class="oyun-kart" style="opacity: 0.6; cursor: not-allowed;" onclick="event.stopPropagation(); alert('Bu oyun henüz geliştirme aşamasında!');">
+                <div class="oyun-ikon-alani">
+                    <span style="color: #666; font-size: 3rem;">🕵️‍♂️</span>
+                </div>
+                <h3>tetris</h3>
+                <p>eskileri anımsatan bir minigame. Çok yakında sizlerle!</p>
+                <button class="oyna-btn" style="background: #333; color: #666; cursor: not-allowed;">YAKINDA</button>
+            </div>
+
+            <div class="oyun-kart" style="opacity: 0.6; cursor: not-allowed;" onclick="event.stopPropagation(); alert('Bu oyun henüz geliştirme aşamasında!');">
+                <div class="oyun-ikon-alani">
+                    <span style="color: #666; font-size: 3rem;">🚀</span>
+                </div>
+                <h3>flappy bird</h3>
+                <p>Yeni nesil flappy bird tarzı bir minigame. Çok yakında sizlerle!</p>
+                <button class="oyna-btn" style="background: #333; color: #666; cursor: not-allowed;">YAKINDA</button>
+            </div>
+
+        </div>
+
+        <!-- <div class="proje-listesi">
             <div class="proje-item">
                 <div class="proje-resim-alani">
                     <img src="proje1-ss.png" alt="Oyun Ekran Görüntüsü 1" class="proje-ss">
@@ -37,16 +195,36 @@
                 <div class="proje-metin">
                     <h3>Proje: İlk Oyunumuz</h3>
                     <p>Henüz geliştirme aşamasında olan ilk oyunumuz için mekanik ve tasarım testleri devam ediyor. Ekibimiz harika fikirler üzerinde çalışıyor!</p>
-                    <p>Detaylar ve yeni ekran görüntüleri çok yakında burada olacak. O zamana kadar kodlamaya devam!</p>
+                    <p>Detaylar ve yeni ekran görüntüleri çok yakında burada olacak.</p>
                 </div>
             </div>
-
-            
-
-        </div>
+        </div> -->
 
         <a href="index.html" class="geri-don-btn">Ana Sayfaya Dön</a>
     </main>
+
+    <div id="oyunModal" class="oyun-modal">
+        <button class="modal-kapat-btn" onclick="oyunuKapat()">X OYUNDAN ÇIK</button>
+        <iframe id="modalIframe" src="" class="modal-oyun-penceresi"></iframe>
+    </div>
+
+    <script>
+        function oyunuAc(oyunUrl) {
+            const modal = document.getElementById('oyunModal');
+            const iframe = document.getElementById('modalIframe');
+            
+            iframe.src = oyunUrl; // Seçilen oyunu yükle
+            modal.style.display = 'flex'; // Pencereyi görünür yap
+        }
+
+        function oyunuKapat() {
+            const modal = document.getElementById('oyunModal');
+            const iframe = document.getElementById('modalIframe');
+            
+            iframe.src = ""; // Oyunu tamamen kapat (RAM temizliği için kritik!)
+            modal.style.display = 'none'; // Pencereyi gizle
+        }
+    </script>
 
 </body>
 </html>
